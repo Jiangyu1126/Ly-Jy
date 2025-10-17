@@ -67,8 +67,8 @@ function updateCharCount() {
     charCount.textContent = count;
     
     // 更新提示文字
-    if (count < 100) {
-        const remaining = 100 - count;
+    if (count < 30) {
+        const remaining = 30 - count;
         charTip.textContent = `还差 ${remaining} 字就可以抽卡`;
         charTip.style.color = '#86868b'; // Apple 风格颜色
         
@@ -86,7 +86,7 @@ function updateCharCount() {
         submitBtn.classList.add('ready');
     }
     
-    console.log(`📝 字数: ${count}/100`);
+    console.log(`📝 字数: ${count}/30`);
 }
 
 // 提交回答
@@ -94,8 +94,8 @@ async function submitAnswer() {
     const answerInput = document.getElementById('answerInput');
     const answer = answerInput.value.trim();
     
-    if (answer.length < 100) {
-        alert('回答至少需要 100 字哦~');
+    if (answer.length < 30) {
+        alert('回答至少需要 30 字哦~');
         return;
     }
     
