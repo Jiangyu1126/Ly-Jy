@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ly&Jy</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/animations.css">
+</head>
+<body>
+    <!-- 主容器 -->
+    <div class="container">
+        
+        <!-- ============ 页面1: 问答页面 ============ -->
+        <div id="questionPage" class="page active">
+            <div class="page-content">
+                <h1 class="main-title">Ly & Jy</h1>
+                <p class="subtitle">想知道些什么吗？<br>回答一个问题，就能抽一次盲盒，看到一小篇日记哟</p>
+                
+                <div class="question-box">
+                    <div class="question-icon">📝</div>
+                    <h2 class="question-text" id="questionText">加载中...</h2>
+                </div>
+                
+                <div class="answer-section">
+                    <textarea 
+                        id="answerInput" 
+                        class="answer-textarea" 
+                        placeholder="多写点，设置的100字起🌲"
+                        maxlength="1000"
+                    ></textarea>
+                    
+                    <!-- 字数统计 - 醒目显示 -->
+                    <div class="char-count">
+                        <span id="charCount">0</span>
+                        <span class="char-total">/100</span>
+                        <span id="charTip" class="char-tip">还差 100 字就可以了</span>
+                    </div>
+                    
+                    <!-- 提交按钮 -->
+                    <button id="submitAnswerBtn" class="btn-primary disabled" disabled>
+                        提交
+                    </button>
+                </div>
+                
+                <div class="page-footer">
+                    <button class="btn-text" id="viewHistoryBtn">
+                        📖 查看回答记录
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ============ 页面2: 抽卡页面 ============ -->
+        <div id="cardPage" class="page">
+            <div class="page-content">
+                <h1 class="main-title">选择一个吧</h1>
+                <p class="subtitle">每个都藏着一小段回忆</p>
+                
+                  <div class="progress-bar">
+                      <div class="progress-text">
+                        已收集：<span id="collectedCount">0</span>/<span id="totalCount">14</span> 💗
+                      </div>
+                    <div class="progress-track">
+                        <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="boxes-container">
+                    <!-- 开心时刻盲盒 -->
+                    <div class="mystery-box happy-box" data-category="happy">
+                        <div class="box-inner">
+                            <div class="box-icon">🎁</div>
+                            <h3 class="box-title">happy</h3>
+                            <p class="box-desc">感觉开心&幸福的小时刻</p>
+                            <div class="box-count" id="happyCount">0/6</div>
+                        </div>
+                        <div class="box-glow"></div>
+                    </div>
+                    
+                    <!-- 小摩擦盲盒 -->
+                    <div class="mystery-box friction-box" data-category="friction">
+                        <div class="box-inner">
+                            <div class="box-icon">💙</div>
+                            <h3 class="box-title">小摩擦</h3>
+                            <p class="box-desc">a little bit 不爽哈哈哈</p>
+                            <div class="box-count" id="frictionCount">0/5</div>
+                        </div>
+                        <div class="box-glow"></div>
+                    </div>
+                    
+                    <!-- 新发现盲盒 -->
+                    <div class="mystery-box discovery-box" data-category="discovery">
+                        <div class="box-inner">
+                            <div class="box-icon">✨</div>
+                            <h3 class="box-title">新发现</h3>
+                            <p class="box-desc">对彼此的一些新认识</p>
+                            <div class="box-count" id="discoveryCount">0/3</div>
+                        </div>
+                        <div class="box-glow"></div>
+                    </div>
+                </div>
+                
+                <div class="page-footer">
+                    <button class="btn-text" id="backToQuestionBtn">
+                        ← 返回首页
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ============ 页面3: 卡片展示遮罩 ============ -->
+        <div id="cardModal" class="modal">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <div class="card-container">
+                    <div class="card" id="displayCard">
+                        <div class="card-front">
+                            <div class="card-icon" id="cardIcon">❤️</div>
+                            <div class="card-category" id="cardCategory">开心时刻</div>
+                            <div class="card-text" id="cardText">
+                                卡片内容将在这里显示...
+                            </div>
+                            <div class="card-footer">
+                                <div class="card-number" id="cardNumber">#01</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button class="btn-primary" id="closeModalBtn">
+                        完成，开始下一个回答 ✨
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ============ 页面4: 回答记录页面 ============ -->
+        <div id="historyPage" class="page">
+            <div class="page-content">
+                <h1 class="main-title">📖 回答记录</h1>
+                <p class="subtitle">你们的心情日记</p>
+                
+                <div class="history-filters">
+                    <button class="filter-btn active" data-filter="all">全部</button>
+                    <button class="filter-btn" data-filter="mine">我的</button>
+                    <button class="filter-btn" data-filter="his">TA的</button>
+                </div>
+                
+                <div class="history-list" id="historyList">
+                    <!-- 动态插入历史记录 -->
+                    <div class="empty-state">
+                        <div class="empty-icon">📝</div>
+                        <p>还没有回答记录</p>
+                        <p class="empty-hint">开始写下第一条心情吧~</p>
+                    </div>
+                </div>
+                
+                <div class="page-footer">
+                    <button class="btn-text" id="backFromHistoryBtn">
+                        ← 返回首页
+                    </button>
+                    <button class="btn-text danger" id="clearHistoryBtn">
+                        🗑️ 清空记录
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- 粒子容器（可选的背景效果） -->
+    <div id="particles"></div>
+    
+    <!-- 加载 EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <!-- 加载项目脚本 -->
+    <script src="scripts/questions.js"></script>
+    <script src="scripts/cards.js"></script>
+    <script src="scripts/storage.js"></script>
+    <script src="scripts/email.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
+

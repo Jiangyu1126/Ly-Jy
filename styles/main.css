@@ -1,0 +1,772 @@
+/* ========== Apple 风格 - 移动端优先 ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+    /* Apple 系统颜色 */
+    --color-primary: #007AFF;
+    --color-happy: #FF9F0A;
+    --color-friction: #5E5CE6;
+    --color-discovery: #30D158;
+    
+    /* 中性色 */
+    --color-bg: #ffffff;
+    --color-bg-secondary: #f5f5f7;
+    --color-text: #1d1d1f;
+    --color-text-secondary: #6e6e73;
+    --color-text-tertiary: #86868b;
+    --color-divider: rgba(0, 0, 0, 0.08);
+    
+    /* 卡片渐变 */
+    --card-happy: linear-gradient(135deg, #FFD60A 0%, #FF9F0A 100%);
+    --card-friction: linear-gradient(135deg, #7F7EFF 0%, #5E5CE6 100%);
+    --card-discovery: linear-gradient(135deg, #64D2FF 0%, #30D158 100%);
+    
+    /* 阴影 */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+    
+    /* 圆角 */
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 20px;
+    --radius-xl: 24px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "PingFang SC", sans-serif;
+    background: var(--color-bg-secondary);
+    color: var(--color-text);
+    line-height: 1.47059;
+    font-size: 17px;
+    letter-spacing: -0.022em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+}
+
+/* 背景图层 */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../封面完整图.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.12;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* 渐变遮罩层 - 极淡 */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(245, 245, 247, 0.02);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ========== 容器 ========== */
+.container {
+    min-height: 100vh;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* ========== 页面切换 ========== */
+.page {
+    display: none;
+    min-height: 100vh;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.page.active {
+    display: block;
+}
+
+.page-content {
+    max-width: 100%;
+    min-height: 100vh;
+    padding: 20px 20px 40px;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* ========== 标题 - Apple 大字体风格 ========== */
+.main-title {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.14286;
+    color: var(--color-text);
+    margin: 24px 0 8px;
+    text-align: left;
+}
+
+.subtitle {
+    font-size: 17px;
+    line-height: 1.47059;
+    font-weight: 400;
+    color: var(--color-text-secondary);
+    margin-bottom: 32px;
+    text-align: left;
+}
+
+/* ========== 问题框 - Apple 卡片风格 ========== */
+.question-box {
+    background: rgba(245, 245, 247, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.question-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.question-text {
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.38095;
+    letter-spacing: -0.021em;
+    color: var(--color-text);
+    text-align: center;
+}
+
+/* ========== 回答区域 ========== */
+.answer-section {
+    margin-bottom: 32px;
+}
+
+.answer-textarea {
+    width: 100%;
+    min-height: 200px;
+    padding: 16px;
+    border: 1px solid var(--color-divider);
+    border-radius: var(--radius-md);
+    font-size: 17px;
+    line-height: 1.47059;
+    resize: vertical;
+    font-family: inherit;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--color-text);
+    transition: border-color 0.2s ease;
+}
+
+.answer-textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.answer-textarea::placeholder {
+    color: var(--color-text-tertiary);
+}
+
+/* ========== 字数统计 - 醒目显示 ========== */
+.char-count {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 6px;
+    margin: 20px 0;
+    padding: 16px;
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+    flex-wrap: wrap;
+}
+
+.char-count #charCount {
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: -0.03em;
+    line-height: 1;
+}
+
+.char-count .char-total {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--color-text-tertiary);
+    line-height: 1;
+}
+
+.char-tip {
+    font-size: 15px;
+    color: var(--color-text-tertiary);
+    width: 100%;
+    text-align: center;
+    margin-top: 8px;
+    line-height: 1.47059;
+}
+
+/* ========== 按钮 - Apple 风格 ========== */
+.btn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 50px;
+    padding: 14px 24px;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: -0.022em;
+}
+
+.btn-primary:active:not(:disabled) {
+    transform: scale(0.96);
+    opacity: 0.8;
+}
+
+.btn-primary.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.btn-primary.ready {
+    background: linear-gradient(135deg, var(--color-primary), #0055FF);
+    box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
+    animation: pulse 2s infinite;
+}
+
+.btn-secondary {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 10px 20px;
+    background: var(--color-bg-secondary);
+    color: var(--color-text);
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:active {
+    transform: scale(0.96);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    font-size: 17px;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 12px;
+    min-height: 44px;
+    transition: opacity 0.2s;
+}
+
+.btn-text:active {
+    opacity: 0.6;
+}
+
+.btn-text.danger {
+    color: #FF3B30;
+}
+
+/* ========== 进度条 - Apple 风格 ========== */
+.progress-bar {
+    margin-bottom: 32px;
+}
+
+.progress-text {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.progress-track {
+    width: 100%;
+    height: 4px;
+    background: var(--color-bg-secondary);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--color-primary);
+    border-radius: 2px;
+    transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ========== 盲盒容器 ========== */
+.boxes-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+/* ========== 盲盒卡片 - Apple 卡片风格 ========== */
+.mystery-box {
+    position: relative;
+    min-height: 160px;
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.happy-box {
+    background: var(--card-happy);
+    color: white;
+}
+
+.friction-box {
+    background: var(--card-friction);
+    color: white;
+}
+
+.discovery-box {
+    background: var(--card-discovery);
+    color: white;
+}
+
+.mystery-box:active {
+    transform: scale(0.96);
+}
+
+.box-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.box-icon {
+    font-size: 56px;
+    margin-bottom: 12px;
+}
+
+.box-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+}
+
+.box-desc {
+    font-size: 15px;
+    opacity: 0.9;
+    margin-bottom: 12px;
+}
+
+.box-count {
+    font-size: 13px;
+    opacity: 0.8;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 12px;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+}
+
+.box-glow {
+    display: none;
+}
+
+/* ========== 模态框 - iOS 风格 ========== */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal.show {
+    display: flex;
+    animation: fadeIn 0.3s;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px) saturate(180%);
+}
+
+.modal-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 500px;
+    animation: slideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card-container {
+    margin-bottom: 16px;
+}
+
+/* ========== 卡片 - Apple 卡片风格 ========== */
+.card {
+    width: 100%;
+    min-height: 400px;
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: 32px;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.card.flip {
+    animation: cardFlip 0.6s ease-out;
+}
+
+.card-happy {
+    background: var(--card-happy);
+    color: white;
+}
+
+.card-friction {
+    background: var(--card-friction);
+    color: white;
+}
+
+.card-discovery {
+    background: var(--card-discovery);
+    color: white;
+}
+
+.card-front {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+.card-category {
+    font-size: 13px;
+    font-weight: 600;
+    opacity: 0.9;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.card-text {
+    font-size: 19px;
+    line-height: 1.52632;
+    font-weight: 500;
+    margin-bottom: 24px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.card-footer {
+    width: 100%;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.card-number {
+    font-size: 13px;
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+.modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal-actions .btn-primary,
+.modal-actions .btn-secondary {
+    width: 100%;
+}
+
+/* ========== 历史记录 ========== */
+.history-filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    justify-content: center;
+}
+
+.filter-btn {
+    min-height: 32px;
+    padding: 6px 16px;
+    background: var(--color-bg-secondary);
+    border: none;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--color-text);
+}
+
+.filter-btn.active {
+    background: var(--color-text);
+    color: white;
+}
+
+.filter-btn:active {
+    transform: scale(0.96);
+}
+
+.history-list {
+    max-height: calc(100vh - 300px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.history-list::-webkit-scrollbar {
+    display: none;
+}
+
+.history-item {
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    margin-bottom: 12px;
+    animation: slideIn 0.3s ease-out;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.history-author {
+    font-weight: 600;
+    font-size: 15px;
+    padding: 4px 12px;
+    border-radius: 8px;
+}
+
+.author-me {
+    background: rgba(0, 122, 255, 0.1);
+    color: var(--color-primary);
+}
+
+.author-him {
+    background: rgba(94, 92, 230, 0.1);
+    color: var(--color-friction);
+}
+
+.history-date {
+    font-size: 13px;
+    color: var(--color-text-tertiary);
+}
+
+.history-question {
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 8px;
+    font-size: 17px;
+    line-height: 1.47059;
+}
+
+.history-answer {
+    color: var(--color-text-secondary);
+    line-height: 1.47059;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.history-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--color-text-tertiary);
+}
+
+.history-word-count {
+    font-weight: 500;
+}
+
+.history-card {
+    background: white;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+}
+
+/* ========== 空状态 ========== */
+.empty-state {
+    text-align: center;
+    padding: 64px 32px;
+    color: var(--color-text-tertiary);
+}
+
+.empty-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.empty-state p {
+    font-size: 17px;
+    line-height: 1.47059;
+}
+
+.empty-hint {
+    font-size: 15px;
+    margin-top: 8px;
+}
+
+/* ========== 页脚 ========== */
+.page-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-divider);
+    gap: 16px;
+}
+
+/* ========== 响应式 - 平板和桌面 ========== */
+@media (min-width: 768px) {
+    .page-content {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 40px 40px 60px;
+        min-height: auto;
+        border-radius: var(--radius-xl);
+        margin-top: 40px;
+        margin-bottom: 40px;
+        box-shadow: var(--shadow-lg);
+    }
+    
+    .main-title {
+        font-size: 40px;
+        text-align: center;
+        margin-top: 0;
+    }
+    
+    .subtitle {
+        font-size: 19px;
+        text-align: center;
+    }
+    
+    .boxes-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    
+    .mystery-box {
+        min-height: 200px;
+    }
+    
+    .btn-primary {
+        max-width: 320px;
+        margin: 0 auto;
+    }
+}
+
+/* ========== 大屏幕优化 ========== */
+@media (min-width: 1024px) {
+    .page-content {
+        max-width: 1024px;
+        padding: 60px 80px 80px;
+    }
+    
+    .main-title {
+        font-size: 56px;
+        margin-bottom: 12px;
+    }
+    
+    .subtitle {
+        font-size: 21px;
+        margin-bottom: 48px;
+    }
+    
+    .answer-textarea {
+        min-height: 240px;
+        font-size: 19px;
+    }
+    
+    .question-text {
+        font-size: 24px;
+    }
+}
+
+/* ========== 小屏幕优化 ========== */
+@media (max-width: 375px) {
+    .page-content {
+        padding: 16px 16px 32px;
+    }
+    
+    .main-title {
+        font-size: 24px;
+    }
+    
+    .char-count #charCount {
+        font-size: 24px;
+    }
+    
+    .char-count .char-total {
+        font-size: 17px;
+    }
+}
+
+/* ========== 安全区域适配 (iPhone X 等) ========== */
+@supports (padding: max(0px)) {
+    .page-content {
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+        padding-bottom: max(40px, env(safe-area-inset-bottom));
+    }
+}
+

@@ -1,0 +1,342 @@
+/* ========== Apple 风格动画效果 ========== */
+
+/* 淡入 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* 滑入 */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 向上滑动 - Apple 风格弹性动画 */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(60px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* 按钮脉动 - 更柔和 */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+/* 浮动 - 更自然 */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-8px) scale(1.02);
+    }
+}
+
+/* 盲盒出现动画 - Apple 弹性效果 */
+@keyframes boxFloat {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* 卡片翻转 - 3D 效果 */
+@keyframes cardFlip {
+    0% {
+        transform: perspective(1000px) rotateY(0) scale(1);
+    }
+    50% {
+        transform: perspective(1000px) rotateY(180deg) scale(1.05);
+    }
+    100% {
+        transform: perspective(1000px) rotateY(360deg) scale(1);
+    }
+}
+
+/* 抖动 */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-4px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(4px);
+    }
+}
+
+/* 心跳 */
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    14%, 42% {
+        transform: scale(1.1);
+    }
+    28%, 70% {
+        transform: scale(1);
+    }
+}
+
+/* 旋转加载 */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 呼吸效果 */
+@keyframes breathe {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.02);
+    }
+}
+
+/* 弹跳 */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-12px);
+    }
+    60% {
+        transform: translateY(-6px);
+    }
+}
+
+/* 缩放进入 */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 缩放退出 */
+@keyframes scaleOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+/* 渐变光泽效果 */
+@keyframes shimmer {
+    0% {
+        background-position: -200% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+/* 进度条加载 */
+@keyframes progressLoad {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* 文字打字效果 */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* 波纹扩散 */
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* 光晕效果 - 柔和 */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 4px 16px rgba(0, 122, 255, 0.2);
+    }
+    50% {
+        box-shadow: 0 4px 24px rgba(0, 122, 255, 0.4);
+    }
+}
+
+/* 摇摆 */
+@keyframes swing {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    20% {
+        transform: rotate(10deg);
+    }
+    40% {
+        transform: rotate(-8deg);
+    }
+    60% {
+        transform: rotate(6deg);
+    }
+    80% {
+        transform: rotate(-4deg);
+    }
+}
+
+/* 渐隐渐现 */
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* ========== 过渡类 ========== */
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.fade-exit {
+    opacity: 1;
+}
+
+.fade-exit-active {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.slide-enter {
+    transform: translateY(20px);
+    opacity: 0;
+}
+
+.slide-enter-active {
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ========== 加载指示器 ========== */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0, 122, 255, 0.2);
+    border-radius: 50%;
+    border-top-color: var(--color-primary);
+    animation: spin 0.8s linear infinite;
+}
+
+.loading-lg {
+    width: 32px;
+    height: 32px;
+    border-width: 3px;
+}
+
+/* ========== 骨架屏动画 ========== */
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--color-bg-secondary) 0%,
+        #e0e0e0 50%,
+        var(--color-bg-secondary) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 8px;
+}
+
+/* ========== 响应式动画控制 ========== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ========== 触摸反馈增强 ========== */
+@media (hover: none) and (pointer: coarse) {
+    /* 移动设备触摸反馈 */
+    .btn-primary:active,
+    .btn-secondary:active,
+    .mystery-box:active {
+        transition-duration: 0.1s;
+    }
+}
+
+/* ========== 性能优化 ========== */
+.mystery-box,
+.card,
+.modal-content,
+.btn-primary,
+.btn-secondary {
+    will-change: transform;
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* 动画完成后移除 will-change */
+.mystery-box:not(:hover),
+.card:not(.flip) {
+    will-change: auto;
+}
